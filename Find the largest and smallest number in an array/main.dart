@@ -44,19 +44,27 @@ List<T> swapListElements<T>({
   return (finalArr[0], finalArr[finalArr.length - 1]);
 }
 
+(int, int) findLargestSmallestNo(List<int> array) {
+  int largest = array[0];
+  int smallest = array[0];
+  for (int i = 0; i < array.length; i++) {
+    if (array[i] > largest) {
+      largest = array[i];
+    } else if (array[i] < smallest) {
+      smallest = array[i];
+    }
+  }
+  return (smallest, largest);
+}
+
 void main() {
   List<int> array = [];
 
   print("Enter length of array?");
   int? arrayLength = uersInput().toInt();
 
-  if (arrayLength < 0) {
-    print("ArrayLength can't be negative");
-    exit(0);
-  }
-
-  if (arrayLength == 0) {
-    print("Array is empty");
+  if (arrayLength < 2) {
+    print("Array not valid");
     exit(0);
   }
 
@@ -66,6 +74,6 @@ void main() {
     array.add(arrayElement);
   }
   print('Array = $array');
-  final (smallestNo, largestNo) = sortArray(array);
+  final (smallestNo, largestNo) = findLargestSmallestNo(array);
   print("Smallest no is ${smallestNo} and Largest no is ${largestNo}");
 }
